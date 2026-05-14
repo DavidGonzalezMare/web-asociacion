@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,34 +27,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
-        <nav
+      <body
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Navbar />
+
+        <main
           style={{
-            padding: "1rem 2rem",
-            background: "#1f2937",
-            display: "flex",
-            gap: "2rem",
-            justifyContent: "center",
-            color: "white",
+            padding: "2rem",
+            width: "100%",
+            flex: 1,
           }}
         >
-          <Link href="/" style={{ color: "white" }}>
-            Home
-          </Link>
-          <Link href="/quienes-somos" style={{ color: "white" }}>
-            Quiénes somos
-          </Link>
-          <Link href="/proyectos" style={{ color: "white" }}>
-            Proyectos
-          </Link>
-          <Link href="/galeria" style={{ color: "white" }}>
-            Galería
-          </Link>
-          <Link href="/contacto" style={{ color: "white" }}>
-            Contacto
-          </Link>
-        </nav>
-        <main style={{ padding: "2rem" }}>{children}</main>
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
